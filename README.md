@@ -45,3 +45,42 @@ ssh -L 3000:$jip:3000 $user@$ip
 Substitute `$jip` for the IP address of the jail, `$user` for the username to access `$ip` and `$ip` for the hostname or IP address of the server.
 
 Of course, if you can access the PC/Server where AdGuard will be jailed and you can use a web browser, it is not necessary to expose that port or use SSH tunneling, just use the jail IP address and port 3000.
+
+### Arguments
+
+* `adguard_tag` (default: `13.2`): see [#tags](#tags).
+
+## How to build the Image
+
+Make any changes you want to your image.
+
+```
+INCLUDE options/network.makejail
+INCLUDE gh+AppJail-makejails/adguard --file build.makejail
+
+SYSRC adguardhome_enable=YES
+```
+
+Build the jail:
+
+```sh
+appjail makejail -j adguard
+```
+
+Remove unportable or unnecessary files and directories and export the jail:
+
+```sh
+appjail stop adguard
+appjail cmd local adguard sh -c "rm -f var/log/*"
+appjail cmd local adguard sh -c "rm -f var/cache/pkg/*"
+appjail cmd local adguard sh -c "rm -f var/run/*"
+appjail cmd local adguard vi etc/rc.conf
+appjail image export adguard
+```
+
+## Tags
+
+| Tag        | Arch    | Version           | Type   |
+| ---------- | ------- | ----------------- | ------ |
+| `13.2`     | `amd64` | `13.2-RELEASE-p1` | `thin` |
+| `13.1`     | `amd64` | `13.1-RELEASE-p8` | `thin` |
