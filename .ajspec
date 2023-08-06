@@ -1,17 +1,7 @@
-tags: 13.1
-13.1.arch: amd64
-13.1.name: "adguardhome"
-13.1.timestamp.amd64: 1689969269
-13.1.sum.amd64: 8cbe4bf02c9d6385571e294ef94b704282b0c16ca6085dc3dcc9dccfe009cb77
-13.1.size.amd64: 23000200
-13.1.source.amd64: https://dtxdf.duckdns.org/5dY2z630zf/adguardhome_13_1_amd64_image_appjail
-13.1.source.amd64+: https://anonget.onrender.com/5dY2z630zf/adguardhome_13_1_amd64_image_appjail
-
-tags+: 13.2
+tags: 13.2
 13.2.arch: amd64
 13.2.name: "adguardhome"
-13.2.timestamp.amd64: 1689969274
-13.2.sum.amd64: 7d137f7deeafe63dd55d396c175e7e6b22289473df3b16aba11d4044b31aed8a
-13.2.size.amd64: 23245624
-13.2.source.amd64: https://dtxdf.duckdns.org/H5Yez93azc/adguardhome_13_2_amd64_image_appjail
-13.2.source.amd64+: https://anonget.onrender.com/H5Yez93azc/adguardhome_13_2_amd64_image_appjail
+13.2.timestamp.amd64: 1691177034
+13.2.sum.amd64: 112ce6f1d4c9d3851c558303ef98813188af73716044500cdcf72e93d2df6c6e
+13.2.size.amd64: 23327936
+13.2.source.amd64: "https://dl.dropboxusercontent.com/scl/fi/9dsvuw7rfajwefijw8jc2/adguardhome-13.2-amd64-image.appjail?rlkey=zxqix4j0ovbgm14b886tze3bp&dl=0"
