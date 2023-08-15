@@ -1,7 +1,7 @@
 tags: 13.2
 13.2.arch: amd64
 13.2.name: "adguardhome"
-13.2.timestamp.amd64: 1691177034
-13.2.sum.amd64: 112ce6f1d4c9d3851c558303ef98813188af73716044500cdcf72e93d2df6c6e
-13.2.size.amd64: 23327936
-13.2.source.amd64: "https://dl.dropboxusercontent.com/scl/fi/9dsvuw7rfajwefijw8jc2/adguardhome-13.2-amd64-image.appjail?rlkey=zxqix4j0ovbgm14b886tze3bp&dl=0"
+13.2.timestamp.amd64: 1692054524
+13.2.sum.amd64: efc7133bbe6107c8e38dfcecd6f6477ba4c24853df10494761b8565eec070260
+13.2.size.amd64: 23341308
+13.2.source.amd64: https://transfer.sh/5yQn1y3kQ1/adguardhome-13.2-amd64-image.appjail
