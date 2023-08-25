@@ -56,7 +56,7 @@ Make any changes you want to your image.
 
 ```
 INCLUDE options/network.makejail
-INCLUDE gh+AppJail-makejails/adguard --file build.makejail
+INCLUDE gh+AppJail-makejails/adguardhome --file build.makejail
 
 SYSRC adguardhome_enable=YES
 ```
