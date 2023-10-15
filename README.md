@@ -82,4 +82,4 @@ appjail image export adguard
 
 | Tag        | Arch    | Version           | Type   |
 | ---------- | ------- | ----------------- | ------ |
-| `13.2`     | `amd64` | `13.2-RELEASE-p3` | `thin` |
+| `13.2`     | `amd64` | `13.2-RELEASE-p4` | `thin` |

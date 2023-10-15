@@ -1,7 +1,8 @@
-tags: 13.2
+tags+: 13.2
 13.2.arch: amd64
 13.2.name: "adguardhome"
-13.2.timestamp.amd64: 1695831848
-13.2.sum.amd64: 5d89ef8168b74f3604fb17ad27d66471ba14fadfb77e297ff8764deb1f032f56
-13.2.size.amd64: 23527044
-13.2.source.amd64: "http://appjail.hpc.at/adguardhome/13.2-amd64-image.appjail"
+13.2.timestamp.amd64: 1697289488
+13.2.sum.amd64: 4f0c42bfcce2643c1a4d5fd76f2b9f4f1bf2b7630d871f8ef65ae0a84938d217
+13.2.size.amd64: 23516448
+13.2.source.amd64: https://images.all101bsd.download/adguardhome/13.2-amd64-image.appjail
+13.2.source.amd64+: http://appjail.hpc.at/adguardhome/13.2-amd64-image.appjail
