@@ -1,3 +1,5 @@
 INCLUDE options/options.makejail
 
 PKG adguardhome ca_root_nss
+
+SYSRC adguardhome_enable=YES
