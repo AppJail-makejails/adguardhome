@@ -50,32 +50,6 @@ Of course, if you can access the PC/Server where AdGuard will be jailed and you 
 
 * `adguard_tag` (default: `13.2`): see [#tags](#tags).
 
-## How to build the Image
-
-Make any changes you want to your image.
-
-```
-INCLUDE options/network.makejail
-INCLUDE gh+AppJail-makejails/adguardhome --file build.makejail
-```
-
-Build the jail:
-
-```sh
-appjail makejail -j adguard
-```
-
-Remove unportable or unnecessary files and directories and export the jail:
-
-```sh
-appjail stop adguard
-appjail cmd local adguard sh -c "rm -f var/log/*"
-appjail cmd local adguard sh -c "rm -f var/cache/pkg/*"
-appjail cmd local adguard sh -c "rm -f var/run/*"
-appjail cmd local adguard vi etc/rc.conf
-appjail image export adguard
-```
-
 ## Tags
 
 | Tag        | Arch    | Version        | Type   |
