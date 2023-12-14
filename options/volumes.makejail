@@ -1,1 +1,2 @@
+OPTION volume=adguardhome-conf mountpoint=usr/local/etc/AdGuardHome.yaml perm:644
 OPTION volume=adguardhome-db mountpoint:/var/db/adguardhome perm:750
