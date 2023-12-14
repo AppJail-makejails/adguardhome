@@ -1,0 +1,1 @@
+OPTION volume=adguardhome-db mountpoint:/var/db/adguardhome
