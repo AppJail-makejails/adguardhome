@@ -50,6 +50,13 @@ Of course, if you can access the PC/Server where AdGuard will be jailed and you 
 
 * `adguard_tag` (default: `13.2`): see [#tags](#tags).
 
+### Volumes
+
+| Name               | owner | group | perm  | type | mountpoint                       |
+| ------------------ | ----- | ----- | ----  | ---- | -------------------------------- |
+| `adguardhome-conf` |   -   |   -   | `644` |  -   | `usr/local/etc/AdGuardHome.yaml` |
+| `adguardhome-db`   |   -   |   -   | `750` |  -   | `/var/db/adguardhome`            |
+
 ## Tags
 
 | Tag        | Arch    | Version        | Type   |
