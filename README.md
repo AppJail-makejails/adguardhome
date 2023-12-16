@@ -52,7 +52,7 @@ Of course, if you can access the PC/Server where AdGuard will be jailed and you 
 
 ### Volumes
 
-| Name             | owner | group | perm | type | mountpoint                     |
+| Name             | Owner | Group | Perm | Type | Mountpoint                     |
 | ---------------- | ----- | ----- | ---- | ---- | ------------------------------ |
 | adguardhome-conf |   -   |   -   | 644  |  -   | usr/local/etc/AdGuardHome.yaml |
 | adguardhome-db   |   -   |   -   | 750  |  -   | /var/db/adguardhome            |
