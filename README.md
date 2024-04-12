@@ -48,7 +48,7 @@ Of course, if you can access the PC/Server where AdGuard will be jailed and you 
 
 ### Arguments
 
-* `adguard_tag` (default: `13.2`): see [#tags](#tags).
+* `adguard_tag` (default: `13.3`): see [#tags](#tags).
 
 ### Volumes
 
@@ -61,5 +61,5 @@ Of course, if you can access the PC/Server where AdGuard will be jailed and you 
 
 | Tag        | Arch    | Version        | Type   |
 | ---------- | ------- | -------------- | ------ |
-| `13.2`     | `amd64` | `13.2-RELEASE` | `thin` |
+| `13.3`     | `amd64` | `13.3-RELEASE` | `thin` |
 | `14.0`     | `amd64` | `14.0-RELEASE` | `thin` |
