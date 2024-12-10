@@ -62,4 +62,4 @@ Of course, if you can access the PC/Server where AdGuard will be jailed and you 
 | Tag        | Arch    | Version        | Type   |
 | ---------- | ------- | -------------- | ------ |
 | `13.4`     | `amd64` | `13.4-RELEASE` | `thin` |
-| `14.1`     | `amd64` | `14.1-RELEASE` | `thin` |
+| `14.2`     | `amd64` | `14.2-RELEASE` | `thin` |
