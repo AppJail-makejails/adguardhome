@@ -4,3 +4,6 @@ ARG adguard_tag=%%TAG1%%
 ARG adguard_ajspec=gh+AppJail-makejails/adguardhome
 
 FROM --entrypoint "${adguard_ajspec}" adguardhome:${adguard_tag}
+
+SYSRC adguardhome_enable=YES
+SERVICE adguardhome start

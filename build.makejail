@@ -2,5 +2,3 @@ INCLUDE options/options.makejail
 INCLUDE options/volumes.makejail
 
 PKG adguardhome ca_root_nss
-
-SYSRC adguardhome_enable=YES
