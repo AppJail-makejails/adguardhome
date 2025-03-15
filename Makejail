@@ -1,6 +1,6 @@
 INCLUDE options/options.makejail
 
-ARG adguard_tag=13.4
+ARG adguard_tag=13.5
 ARG adguard_ajspec=gh+AppJail-makejails/adguardhome
 
 FROM --entrypoint "${adguard_ajspec}" adguardhome:${adguard_tag}
