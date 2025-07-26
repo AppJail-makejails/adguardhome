@@ -1,17 +1,17 @@
 tags+: 13.5
 13.5.arch: amd64
 13.5.name: "adguardhome"
-13.5.timestamp.amd64: 1753486705
-13.5.sum.amd64: d2d209f2c8e3c8f81f89f81a82a1ed4f4a23684acb7e96944253901a1d25132e
-13.5.size.amd64: 42509543
+13.5.timestamp.amd64: 1753570240
+13.5.sum.amd64: 0989ff73ca4bbec251ffe677bbdaa37ce8d153438974cd8e5f450056b6603bc6
+13.5.size.amd64: 42509534
 13.5.source.amd64: "https://images.all101bsd.download/adguardhome/13.5-amd64-image.appjail"
 13.5.source.amd64+: "http://appjail.hpc.at/adguardhome/13.5-amd64-image.appjail"
 tags+: 14.3
 14.3.arch: amd64
 14.3.name: "adguardhome"
-14.3.timestamp.amd64: 1753487013
-14.3.sum.amd64: 6f198ff4ce8738c80c04ad94c11eed98fd14f374a1ddea21d98e2cc33a1bb4df
-14.3.size.amd64: 42017322
+14.3.timestamp.amd64: 1753570545
+14.3.sum.amd64: 371e3dfc3f8189da4d54169affe4d21726d5c8a30da85d16d8503e124bfc99c4
+14.3.size.amd64: 42057156
 14.3.source.amd64: "https://images.all101bsd.download/adguardhome/14.3-amd64-image.appjail"
 14.3.source.amd64+: "http://appjail.hpc.at/adguardhome/14.3-amd64-image.appjail"
 maintenance: "This image is uploading, please wait a moment and try again. If you are importing this image using a Makejail that has the '--<name>_ajspec' argument, you can use the 'reproduce' method to use 'appjail-reproduce'. See 'appjail-image(5)' for details."
