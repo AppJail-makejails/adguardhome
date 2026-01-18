@@ -48,7 +48,7 @@ Of course, if you can access the PC/Server where AdGuard will be jailed and you 
 
 ### Arguments
 
-* `adguard_tag` (default: `13.5`): see [#tags](#tags).
+* `adguard_tag` (default: `14.3`): see [#tags](#tags).
 * `adguard_ajspec` (default: `gh+AppJail-makejails/adguardhome`): Entry point where the `appjail-ajspec(5)` file is located.
 
 ### Volumes
@@ -62,5 +62,5 @@ Of course, if you can access the PC/Server where AdGuard will be jailed and you 
 
 | Tag        | Arch    | Version        | Type   |
 | ---------- | ------- | -------------- | ------ |
-| `13.5`     | `amd64` | `13.5-RELEASE` | `thin` |
 | `14.3`     | `amd64` | `14.3-RELEASE` | `thin` |
+| `15`     | `amd64` | `15` | `thin` |
