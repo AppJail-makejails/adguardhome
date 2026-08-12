@@ -1,66 +1,106 @@
-# adguardhome
+# AdGuard Home
 
-AdGuard Home is a network-wide software for blocking ads &amp; tracking. After you set it up, it'll cover ALL your home devices, and you don't need any client-side software for that. With the rise of Internet-Of-Things and connected devices, it becomes more and more important to be able to control your whole network.
+AdGuard Home is a network-wide software for blocking ads & tracking. After you set it up, it'll cover ALL your home devices, and you don't need any client-side software for that. With the rise of Internet-Of-Things and connected devices, it becomes more and more important to be able to control your whole network.
 
 wikipedia.org/wiki/AdGuard
 
-![adguard logo](https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/AdGuard.svg/220px-AdGuard.svg.png)
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/AdGuard.svg/250px-AdGuard.svg.png" width="30%" height="auto" alt="AdGuard Home logo">
 
 ## How to use this Makejail
 
-```
-INCLUDE options/network.makejail
-INCLUDE gh+AppJail-makejails/adguardhome
+### Create directories for persistent configuration and data
 
-OPTION expose=80
-OPTION expose=53 proto:udp
-# See below.
-#OPTION expose=3000
-```
+The image exposes two volumes for data and configuration persistence. You should create a data directory on a suitable volume on your host system, e.g. `/my/own/workdir`, and a configuration directory on a suitable volume on your host system, e.g. `/my/own/confdir`.
 
-Where `options/network.makejail` are the options that suit your environment, for example:
+### Create and run the container
 
-```
-ARG network
-ARG interface=adguard
-
-OPTION virtualnet=${network}:${interface} default
-OPTION nat
-```
-
-Open a shell and run `appjail makejail`:
-
-```sh
-appjail makejail -j adguard -- --network dns
+```console
+$ appjail oci run -Pd \
+    -o overwrite=force \
+    -o virtualnet=":<random> default" \
+    -o nat \
+    -o fstab="/my/own/workdir /adguardhome/work" \
+    -o fstab="/my/own/confdir /adguardhome/conf" \
+    -o expose="53:53 proto:tcp" -o expose="53:53 proto:udp" \
+    -o expose="67:67 proto:udp" -o expose="68:68 proto:udp" \
+    -o expose="80:80 proto:tcp" -o expose="443:443 proto:tcp" -o expose="443:443 proto:udp" -o expose="3000:3000 proto:tcp" \
+    -o expose="853:853 proto:tcp" \
+    -o expose="784:784 proto:udp" -o expose="853:853 proto:udp" -o expose="8853:8853 proto:udp" \
+    -o expose="5443:5443 proto:tcp" -o expose="5443:5443 proto:udp" \
+    ghcr.io/appjail-makejails/adguardhome adguardhome
 ```
 
-The main `Makejail` will expose `tcp/80` and `udp/53`, but not `tcp/3000` unless you uncomment it. I recommend that you do not uncomment this line unless you are sure you can configure AdGuard remotely without exposing a security problem.
+Now you can open the browser and navigate to http://adguardhome:3000/ (from the same host) or http://host-ip:3000 (from external hosts) to control your AdGuard Home service.
 
-Another way to configure AdGuard more securely is to use SSH tunneling.
+Don't forget to use your own **data** and **config** directories!
 
-```sh
-ssh -L 3000:$jip:3000 $user@$ip
+Ports mappings you may need:
+
+* `-o expose="53:53 proto:tcp" -o expose="53:53 proto:udp"`: plain DNS.
+* `-o expose="67:67 proto:udp" -o expose="68:68 proto:udp"`: add if you intend to use AdGuard Home as a DHCP server.
+* `-o expose="80:80 proto:tcp" -o expose="443:443 proto:tcp" -o expose="443:443 proto:udp" -o expose="3000:3000 proto:tcp"`: add if you are going to use AdGuard Home's admin panel as well as run AdGuard Home as an [HTTPS/DNS-over-HTTPS](https://github.com/AdguardTeam/AdGuardHome/wiki/Encryption) server.
+* `-o expose="853:853 proto:tcp"`: add if you are going to run AdGuard Home as a [DNS-over-TLS](https://github.com/AdguardTeam/AdGuardHome/wiki/Encryption) server.
+* `-o expose="784:784 proto:udp" -o expose="853:853 proto:udp" -o expose="8853:8853 proto:udp"`: add if you are going to run AdGuard Home as a [DNS-over-QUIC server](https://github.com/AdguardTeam/AdGuardHome/wiki/Encryption). You may only leave one or two of these.
+* `-o expose="5443:5443 proto:tcp" -o expose="5443:5443 proto:udp"`: add if you are going to run AdGuard Home as a [DNSCrypt](https://github.com/AdguardTeam/AdGuardHome/wiki/DNSCrypt) server.
+
+### Control the container
+
+* Start: `appjail start adguardhome`
+* Stop: `appjail stop adguardhome`
+* Remove: `appjail stop adguardhome && appjail jail destroy -f adguardhome`
+
+### Update To A Newer Version
+
+Just add `-o container="args:--pull"`, and the image will be updated automatically before the container is created.
+
+### Additional Configuration
+
+Upon the first run, a file named `AdGuardHome.yaml` will be created, with default values written into it. You can modify the file while your AdGuard Home container is not running. Otherwise, any changes to the file will be lost because the running program will overwrite them.
+
+Settings are stored in [YAML](https://yaml.org/), possible parameters that you can configure are listed on [this page](https://github.com/AdguardTeam/Adguardhome/wiki/Configuration).
+
+### DHCP Server
+
+If you want to use AdGuardHome's DHCP server, you should inherit the host's network stack and unhide `bpf*` devices when creating the container:
+
+```console
+$ appjail oci run -Pd \
+    -o overwrite=force \
+    -o alias \
+    -o ip4_inherit \
+    -o ip6_inherit \
+    -o mount_devfs \
+    -o device='include $devfsrules_hide_all' \
+    -o device='include $devfsrules_unhide_basic' \
+    -o device='include $devfsrules_unhide_login' \
+    -o device='path bpf unhide' \
+    -o device="path 'bpf*' unhide" \
+    -o fstab="/my/own/workdir /adguardhome/work" \
+    -o fstab="/my/own/confdir /adguardhome/conf" \
+    ghcr.io/appjail-makejails/adguardhome adguardhome
 ```
 
-Substitute `$jip` for the IP address of the jail, `$user` for the username to access `$ip` and `$ip` for the hostname or IP address of the server.
+This option instructs AppJail to use the host's network rather than a appjail-bridged network. Note that port mapping with `-o expose` is not necessary in this case.
 
-Of course, if you can access the PC/Server where AdGuard will be jailed and you can use a web browser, it is not necessary to expose that port or use SSH tunneling, just use the jail IP address and port 3000.
+**Note**: Once you've configured and enabled DHCP in Adguard Home, you may see an error message such as `Error: control/dhcp/set_config | enabling dhcp: setting static ip: setting static ip: not supported on freebsd: unsupported operation | 500`. Although this is an error, it doesn't mean that DHCP isn't enabled. You just need to restart the jail using the command `appjail restart adguardhome`.
 
-### Arguments
+### Arguments (stage: build)
 
-* `adguard_tag` (default: `14.3`): see [#tags](#tags).
-* `adguard_ajspec` (default: `gh+AppJail-makejails/adguardhome`): Entry point where the `appjail-ajspec(5)` file is located.
+* `adguardhome_from` (default: `ghcr.io/appjail-makejails/adguardhome`): Location of OCI image. See also [OCI Configuration](#oci-configuration).
+* `adguardhome_tag` (default: `latest`): OCI image tag. See also [OCI Configuration](#oci-configuration).
 
-### Volumes
 
-| Name             | Owner | Group | Perm | Type | Mountpoint                     |
-| ---------------- | ----- | ----- | ---- | ---- | ------------------------------ |
-| adguardhome-conf |   -   |   -   | 644  |  -   | usr/local/etc/AdGuardHome.yaml |
-| adguardhome-db   |   -   |   -   | 750  |  -   | /var/db/adguardhome            |
+## OCI Configuration
 
-## Tags
-
-| Tag        | Arch    | Version        | Type   |
-| ---------- | ------- | -------------- | ------ |
-| `14.3`     | `amd64` | `14.3-RELEASE` | `thin` |
-| `15`     | `amd64` | `15` | `thin` |
+```yaml
+build:
+  variants:
+    - tag: 15.1
+      containerfile: Containerfile
+      aliases: ["latest"]
+      default: true
+      args:
+        FREEBSD_RELEASE: "15.1"
+        NO_PKGCLEAN: "1"
+      cache_dirs: ["pkgcache0:/var/cache/pkg"]
+```

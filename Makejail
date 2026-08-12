@@ -1,9 +1,6 @@
-INCLUDE options/options.makejail
+ARG adguardhome_from=ghcr.io/appjail-makejails/adguardhome
+ARG adguardhome_tag=latest
 
-ARG adguard_tag=14.3
-ARG adguard_ajspec=gh+AppJail-makejails/adguardhome
-
-FROM --entrypoint "${adguard_ajspec}" adguardhome:${adguard_tag}
-
-SYSRC adguardhome_enable=YES
-SERVICE adguardhome start
+OPTION container=boot
+OPTION overwrite=force
+OPTION from=${adguardhome_from}:${adguardhome_tag}
