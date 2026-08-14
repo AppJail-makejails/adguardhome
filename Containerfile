@@ -14,7 +14,7 @@ LABEL org.opencontainers.image.title="Adguard Home" \
 RUN set -xe; \
     \
     pkg update; \
-    pkg install -U adguardhome; \
+    pkg install adguardhome; \
     \
     if [ -z "${NO_PKGCLEAN}" ]; then \
         pkg clean -a; \
